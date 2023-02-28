@@ -9,27 +9,47 @@ export default function TextForm(props) {
     const handleUpClick = () => {
         // console.log("Clicked"+ text)
         let newText = text.toUpperCase();
-        setText(newText)
+        if (text == "") {
+            props.saveAlert("primary", "Please input text")
+        } else {
+            setText(newText)
+            props.saveAlert("success", "Converted to UPPERCASE")
+        }
     }
 
     const handleDownClick = () => {
         // console.log("Clicked"+ text)
         let newText = text.toLowerCase();
-        setText(newText)
+        if (text == "") {
+            props.saveAlert("primary", "Please input a text")
+        } else {
+            setText(newText)
+            props.saveAlert("success", "Converted to lowercase")
+        }
     }
 
     const copyText = () => {
         // console.log("Clicked"+ text)
-        copyBtn.innerText = "Copied to Clipboard!"
-        navigator.clipboard.writeText(text);
-        setTimeout(() => {
-            copyBtn.innerText = "Copy to Clipboard"
-        }, 2000)
+        if (text == "") {
+            props.saveAlert("primary", "Please input a text")
+        } else {
+            copyBtn.innerText = "Copied to Clipboard!"
+            props.saveAlert("success", "Copied to Clipboard")
+            navigator.clipboard.writeText(text);
+            setTimeout(() => {
+                copyBtn.innerText = "Copy to Clipboard"
+            }, 2000)
+        }
     }
 
     const clearText = () => {
         // console.log("Clicked"+ text)
-        setText("");
+        if (text == "") {
+            props.saveAlert("primary", "Please input a text")
+        } else {
+            setText("");
+            props.saveAlert("danger", "Text Cleared")
+        }
     }
 
     const handleOnChange = (event) => {
