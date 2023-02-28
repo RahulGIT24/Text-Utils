@@ -2,7 +2,7 @@ import React from 'react'
 import propTypes from 'prop-types'
 export default function Navbar(props) {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">{props.title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,6 +18,10 @@ export default function Navbar(props) {
                         </li>
                     </ul>
                 </div>
+                <div className="form-check form-switch">
+                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toogleBtn} />
+                    <label className={`form-check-label text-${props.mode == 'light' ? "dark" : "light"}`} htmlFor="flexSwitchCheckDefault">{`${props.mode == 'light' ? 'Dark' : "Light"} Mode`}</label>
+                </div>
             </div>
         </nav>
     )
@@ -25,7 +29,7 @@ export default function Navbar(props) {
 
 //* Proptype
 Navbar.propTypes = {
-    title:propTypes.string.isRequired, //! isRequired ensures that the value should be passed. If not it throws error. If default props is defined then it will not throw an error
+    title: propTypes.string.isRequired, //! isRequired ensures that the value should be passed. If not it throws error. If default props is defined then it will not throw an error
     aboutText: propTypes.string.isRequired
 }
 

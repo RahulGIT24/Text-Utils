@@ -42,7 +42,7 @@ export default function TextForm(props) {
             <div className='container'>
                 <div className="mb-3">
                     <h1 className='my-3'>{props.heading}</h1>
-                    <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="5" placeholder='Enter text here'></textarea>
+                    <textarea className={`form-control bg-${props.mode == 'light' ? "light" : "dark"} text-${props.mode == 'light' ? "dark" : "light"}`} value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="5" placeholder='Enter text here'></textarea>
                 </div>
                 <button type="button" className="btn btn-primary mx-2" onClick={handleUpClick}>UPPERCASE</button>
                 <button type="button" className="btn btn-primary mx-2" onClick={handleDownClick}>lowercase</button>
@@ -54,7 +54,7 @@ export default function TextForm(props) {
                 <p><b>{text.split(" ").length - 1}</b> words, <b>{text.length}</b> Characters</p>
                 <p><b>{0.008 * text.split(" ").length}</b> Minutes to read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{`${text.length == 0 ? "Enter text to preview" : text}`}</p>
             </div>
         </>
     )
