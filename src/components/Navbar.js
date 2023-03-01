@@ -2,7 +2,7 @@ import React from 'react'
 import propTypes from 'prop-types'
 export default function Navbar(props) {
     return (
-        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+        <nav className={`navbar navbar-expand-lg navbar-${props.mode == 'light' ? "light" : props.mode == 'warning' ? 'light' : "dark"} bg-${props.mode}`}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">{props.title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +18,35 @@ export default function Navbar(props) {
                         </li>
                     </ul>
                 </div>
+                <div className="dropdown mx-5">
+                    <button className={`btn btn-${props.mode == 'light' ? "light" : props.mode == 'danger' ? 'danger' : props.mode == 'warning' ? 'warning' : props.mode == 'primary' ? 'primary' : "dark"} dropdown-toggle text-${props.mode == 'light' ? "dark" : props.mode == 'warning' ? 'dark' : "light"}`} type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Custom Themes
+                    </button>
+                    <ul className={`dropdown-menu bg-${props.mode == 'light' ? "light" : props.mode == 'danger' ? 'danger' : props.mode == 'warning' ? 'warning' : props.mode == 'primary' ? 'primary' : "dark"} text-${props.mode == 'light' ? "dark" : props.mode == 'warning' ? 'dark' : "light"}`} >
+                        <div className="form-check mx-2 " >
+                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={props.red} />
+                            <label className="form-check-label" htmlFor="exampleRadios1">
+                                Red
+                            </label>
+                        </div>
+                        <div className="form-check mx-2 ">
+                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" onClick={props.blue} />
+                            <label className="form-check-label " htmlFor="exampleRadios1">
+                                Blue
+                            </label>
+                        </div>
+                        <div className="form-check mx-2 ">
+                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option1" onClick={props.yellow} />
+                            <label className="form-check-label" htmlFor="exampleRadios1">
+                                Yellow
+                            </label>
+                        </div>
+
+                    </ul>
+                </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toogleBtn} />
-                    <label className={`form-check-label text-${props.mode == 'light' ? "dark" : "light"}`} htmlFor="flexSwitchCheckDefault">{`${props.mode == 'light' ? 'Dark' : "Light"} Mode`}</label>
+                    <input className={`form-check-input bg-${props.mode}`} type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toogleBtn} />
+                    <label className={`form-check-label text-${props.mode == 'light' ? "dark" : props.mode == 'warning' ? "dark" : "light"}`} htmlFor="flexSwitchCheckDefault">{`${props.mode == 'dark' ? 'Light' : "Dark"} Mode`}</label>
                 </div>
             </div>
         </nav>
