@@ -11,6 +11,8 @@ function App() {
   const toogleBtn = () => {
     if (mode === 'light' || mode === 'danger' || mode === 'warning' || mode === 'primary') {
       setMode('dark');
+      //* Title changed
+      // document.title = "Text-Utils Dark"
       document.body.style.backgroundColor = '#212529'
       document.body.style.color = 'white'
       saveAlert("success", "Dark Mode enabled")
